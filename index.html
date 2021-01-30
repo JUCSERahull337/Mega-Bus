@@ -139,51 +139,17 @@
             const firstPlus= document.getElementById('firstClass').value;
             var firstPlusNumber=parseFloat(firstPlus);
 
-
-            plusCount = firstPlusNumber+1;
-            document.getElementById('firstClass').value= plusCount;         //increase
-            //Get Latest Value
-            // const FirstClass=document.getElementById('firstClass').value
-            // var FirstClassNumber=parseFloat(FirstClass);
-            // console.log('latest value', FirstClassNumber);
-
-
-            //Update Subtotal
-            // const subTotal= document.getElementById('subtotal').innerText;
-            // const subTotalNumber= parseFloat(subTotal);
-            // var latestSubTotal= subTotalNumber+150;
-            // document.getElementById('subtotal').innerText= latestSubTotal;
-
-            var latestSubTotal=UpdateSubTotal('subtotal',150);   //update subtotal Function
-            document.getElementById('subtotal').innerText= latestSubTotal ;
+            plusCount = firstPlusNumber+1;                                            //increase
+            document.getElementById('firstClass').value= plusCount;                   //update on-site      
             
-
-            //Update VAT
-            const Vat= document.getElementById('vat').innerText;
-            const VatNumber= parseFloat(Vat);
-            var latestVat= latestSubTotal* (.1);
-            document.getElementById('vat').innerText=latestVat;
-
-            //Update Total
-            const total= document.getElementById('total').innerText;
-            const totalNumber= parseFloat(total);
-            var latestTotal= latestSubTotal + latestVat;
-            document.getElementById('total').innerText= latestTotal;
-
-
-
-
-
-            //Capture input box & update
-            //const firstClass=document.getElementById('firstClass').value;
-            //const firstClassNumber= parseFloat(firstClass);
-            //console.log(firstClassNumber)
+            var latestSubTotal=UpdateSubTotal('subtotal',150);                        //update subtotal Function
+            document.getElementById('subtotal').innerText= latestSubTotal ;            //update on-site
             
+            var UpdatedVat= UpdateVAT(latestSubTotal);                                //update vat function
+            document.getElementById('vat').innerText=UpdatedVat;                     //update on-site
 
-
-
-
-
+            var latestTotal= latestSubTotal + UpdatedVat;                            //Updated Total 
+            document.getElementById('total').innerText= latestTotal;                //update on-site
         })
 
          //Economy Class(+)
@@ -194,24 +160,18 @@
             const economyPlus= document.getElementById('economyClass').value;
             var economyPlusNumber=parseFloat(economyPlus);
             console.log(economyPlusNumber);
-            var ecoPlusCount= economyPlusNumber+1;   //increment
-            document.getElementById('economyClass').value= ecoPlusCount;
+            var ecoPlusCount= economyPlusNumber+1;                                //increment
+            document.getElementById('economyClass').value= ecoPlusCount;          //update on-site
 
-             //Update SUbtotal
-            const subTotal= document.getElementById('subtotal').innerText;
-            const subTotalNumber= parseFloat(subTotal);
-            var latestSubTotal= subTotalNumber+100;
-            document.getElementById('subtotal').innerText= latestSubTotal;
-             //Update VAT
-             const Vat= document.getElementById('vat').innerText;
-            const VatNumber= parseFloat(Vat);
-            var latestVat= latestSubTotal* (.1);
-            document.getElementById('vat').innerText=latestVat;
-             //Update Total
-             const total= document.getElementById('total').innerText;
-            const totalNumber= parseFloat(total);
-            var latestTotal= latestSubTotal + latestVat;
-            document.getElementById('total').innerText= latestTotal;
+            var latestSubTotal=UpdateSubTotal('subtotal',100);                   //update subtotal Function
+            document.getElementById('subtotal').innerText= latestSubTotal ;      //update on-site
+
+            var UpdatedVat= UpdateVAT(latestSubTotal);                          //update vat function
+            document.getElementById('vat').innerText=UpdatedVat;                //update on-site
+
+            var latestTotal= latestSubTotal + UpdatedVat;                       //Updated Total 
+            document.getElementById('total').innerText= latestTotal;           //update on-site
+            
         })
 
          //First Class (-)
@@ -223,40 +183,20 @@
             const firstClass=document.getElementById('firstClass').value
             const firstClassNumber=parseFloat(firstClass);
             console.log(firstClassNumber);
-            // const subTotal= document.getElementById('subtotal').innerText;
-            //     const subTotalNumber= parseFloat(subTotal);
-            //     console.log('subtotal',subTotalNumber);
+            
             if(firstClassNumber>0){
-                clickCountMinus= firstClassNumber-1;
-                document.getElementById('firstClass').value=clickCountMinus;
-                //get latest value
-                // const firstMinusClass=document.getElementById('firstClass').value
-                // var firstMinusClassNumber=parseFloat(firstMinusClass);
-                // console.log("hello",firstMinusClass)
-
-                //Update Subtotal
-                // const subTotal= document.getElementById('subtotal').innerText;
-                // const subTotalNumber= parseFloat(subTotal);
-                // console.log('subtotal',subTotalNumber);
-                // var latestSubTotal = subTotalNumber-150;
-                // document.getElementById('subtotal').innerText= latestSubTotal;
-                //console.log(plusCount)
-
+                clickCountMinus= firstClassNumber-1;                                  //decrease
+                document.getElementById('firstClass').value=clickCountMinus;          //update on-site
+                
                 //update subtotal using Function
-                var latestSubTotal=UpdateSubTotal('subtotal',(-1*150));   //update subtotal Function
-                document.getElementById('subtotal').innerText= latestSubTotal ;
+                var latestSubTotal=UpdateSubTotal('subtotal',(-1*150));               //updated subtotal Function
+                document.getElementById('subtotal').innerText= latestSubTotal ;       //update on-site
 
-                //Update VAT
-                const Vat= document.getElementById('vat').innerText;
-                const VatNumber= parseFloat(Vat);
-                var latestVat= latestSubTotal* (.1);
-                document.getElementById('vat').innerText=latestVat;
+                var UpdatedVat= UpdateVAT(latestSubTotal);                            //updated vat function
+                document.getElementById('vat').innerText=UpdatedVat;
 
-                  //Update Total
-                const total= document.getElementById('total').innerText;
-                const totalNumber= parseFloat(total);
-                var latestTotal= latestSubTotal + latestVat;
-                document.getElementById('total').innerText= latestTotal;
+                var latestTotal= latestSubTotal + UpdatedVat;                         //Updated Total 
+                document.getElementById('total').innerText= latestTotal;              //update on-site
             }
             else{
                 document.getElementById('firstClass').value="0";
@@ -271,27 +211,17 @@
             const economyMinus= document.getElementById('economyClass').value;
             var economyMinusNumber=parseFloat(economyMinus);
             if (economyMinusNumber>0) {
-                var ecoMinusCount= economyMinusNumber-1;    //decrease
-                document.getElementById('economyClass').value=ecoMinusCount;
+                var ecoMinusCount= economyMinusNumber-1;                                //decrease
+                document.getElementById('economyClass').value=ecoMinusCount;            //update on-site
 
+                var latestSubTotal=UpdateSubTotal('subtotal',(-1*100));                 //updated subtotal Function
+                document.getElementById('subtotal').innerText= latestSubTotal ;         //update on-site
+
+                var UpdatedVat= UpdateVAT(latestSubTotal);                              //update vat function
+                document.getElementById('vat').innerText=UpdatedVat;                    //update on-site
                 
-             //Update SUbtotal
-                const subTotal= document.getElementById('subtotal').innerText;
-                const subTotalNumber= parseFloat(subTotal);
-                var latestSubTotal= subTotalNumber-100;
-                document.getElementById('subtotal').innerText= latestSubTotal;
-
-                //Update VAT
-                const Vat= document.getElementById('vat').innerText;
-                const VatNumber= parseFloat(Vat);
-                var latestVat= latestSubTotal* (.1);
-                document.getElementById('vat').innerText=latestVat;
-
-                //Update Total
-                const total= document.getElementById('total').innerText;
-                const totalNumber= parseFloat(total);
-                var latestTotal= latestSubTotal + latestVat;
-                document.getElementById('total').innerText= latestTotal;    
+                var latestTotal= latestSubTotal + UpdatedVat;                           //Updated Total 
+                document.getElementById('total').innerText= latestTotal;                //update on-site
             } 
             else {
                 document.getElementById('economyClass').value="0";
@@ -301,13 +231,21 @@
         })
 
         function UpdateSubTotal(id,basePrice){
-        const subTotal= document.getElementById(id).innerText;
-        const subTotalNumber= parseFloat(subTotal);
-        var latestSubTotal= subTotalNumber+basePrice;
-        //document.getElementById(id).innerText= latestSubTotal;
-        return latestSubTotal;
+            const subTotal= document.getElementById(id).innerText;
+            const subTotalNumber= parseFloat(subTotal);
+            var latestSubTotal= subTotalNumber+basePrice;
+            //document.getElementById(id).innerText= latestSubTotal;
+            return latestSubTotal;
 
-     }
+        }
+
+        function UpdateVAT(latestSubTotal){
+            const Vat= document.getElementById('vat').innerText;
+            const VatNumber= parseFloat(Vat);
+            var latestVat= latestSubTotal* (.1);
+            //document.getElementById('vat').innerText=latestVat;
+            return latestVat;
+        }
 
         //Bonus Part
         const bonusDiv=document.getElementById('confirmation');
