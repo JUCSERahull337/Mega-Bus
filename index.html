@@ -125,7 +125,7 @@
         <h2 class="text-info">Thank You, Sir </h2>
         <h4>Enjoy Your Journey With Us</h4>
         <i>For Any Queries</i>
-        <p>Contact Us: 01689742971</p>
+        <p><i>Contact Us:</i> 01689742971</p>
     </div>
 
     <!--Thank You-->
@@ -135,12 +135,8 @@
         const firstBtn= document.getElementById('firstBtnPlus');
         var plusCount= 0;
         firstBtn.addEventListener('click', function(event){
-            console.log('Plus Clicked')
-            const firstPlus= document.getElementById('firstClass').value;
-            var firstPlusNumber=parseFloat(firstPlus);
-
-            plusCount = firstPlusNumber+1;                                            //increase
-            document.getElementById('firstClass').value= plusCount;                   //update on-site      
+           
+             TicketCount('firstClass',true);                                        //Increase & update on-site
             
             var latestSubTotal=UpdateSubTotal('subtotal',150);                        //update subtotal Function
             document.getElementById('subtotal').innerText= latestSubTotal ;            //update on-site
@@ -156,12 +152,8 @@
         const ecoBtnPlus=document.getElementById('ecoBtnPlus');
         var ecoPlusCount=0
         ecoBtnPlus.addEventListener('click', function(event){
-            console.log('Eco plus Clicked');
-            const economyPlus= document.getElementById('economyClass').value;
-            var economyPlusNumber=parseFloat(economyPlus);
-            console.log(economyPlusNumber);
-            var ecoPlusCount= economyPlusNumber+1;                                //increment
-            document.getElementById('economyClass').value= ecoPlusCount;          //update on-site
+           
+            TicketCount('economyClass',true);                                   //Increase & update on-site
 
             var latestSubTotal=UpdateSubTotal('subtotal',100);                   //update subtotal Function
             document.getElementById('subtotal').innerText= latestSubTotal ;      //update on-site
@@ -176,17 +168,17 @@
 
          //First Class (-)
         const firstBtnMinus= document.getElementById('firstBtnMinus');
-         var clickCountMinus=0;
+        var clickCountMinus=0;
         firstBtnMinus.addEventListener('click', function(event){
-            console.log('Minus clicked');
-            //Decrease
+            //console.log('Minus clicked');
+            //Get Recent Value
             const firstClass=document.getElementById('firstClass').value
             const firstClassNumber=parseFloat(firstClass);
-            console.log(firstClassNumber);
+            // console.log(firstClassNumber);
             
             if(firstClassNumber>0){
-                clickCountMinus= firstClassNumber-1;                                  //decrease
-                document.getElementById('firstClass').value=clickCountMinus;          //update on-site
+
+                TicketCount('firstClass',false);                                      //Decrease & update on-site
                 
                 //update subtotal using Function
                 var latestSubTotal=UpdateSubTotal('subtotal',(-1*150));               //updated subtotal Function
@@ -207,12 +199,13 @@
         const ecoBtnMinus= document.getElementById('ecoBtnMinus');
         var ecoMinusCount=0;
         ecoBtnMinus.addEventListener('click',function(event){
-            console.log('Eco Minus Clicked');
+            //console.log('Eco Minus Clicked');
+            //Get Recent value
             const economyMinus= document.getElementById('economyClass').value;
             var economyMinusNumber=parseFloat(economyMinus);
             if (economyMinusNumber>0) {
-                var ecoMinusCount= economyMinusNumber-1;                                //decrease
-                document.getElementById('economyClass').value=ecoMinusCount;            //update on-site
+               
+                TicketCount('economyClass',false);                                      //Decrease & update on-site
 
                 var latestSubTotal=UpdateSubTotal('subtotal',(-1*100));                 //updated subtotal Function
                 document.getElementById('subtotal').innerText= latestSubTotal ;         //update on-site
@@ -246,6 +239,25 @@
             //document.getElementById('vat').innerText=latestVat;
             return latestVat;
         }
+
+
+        function TicketCount(id, isIncrease){
+            const firstPlus= document.getElementById(id).value;
+            //var firstPlusNumber=parseFloat(firstPlus);
+            var ticketCount=parseFloat(firstPlus);
+            if(isIncrease==true){
+
+                ticketCount++;
+                document.getElementById(id).value= ticketCount;
+
+            }
+            else if(isIncrease==false){
+                ticketCount--;
+                document.getElementById(id).value= ticketCount;
+                
+        }
+
+}
 
         //Bonus Part
         const bonusDiv=document.getElementById('confirmation');

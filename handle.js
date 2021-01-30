@@ -219,6 +219,24 @@ function UpdateVAT(latestSubTotal){
     return latestVat;
 }
 
+function TicketCount(id, isIncrease){
+    const firstPlus= document.getElementById(id).value;
+    //var firstPlusNumber=parseFloat(firstPlus);
+    var ticketCount=parseFloat(firstPlus);
+    if(isIncrease==true){
+
+        ticketCount++;
+        document.getElementById(id).value= ticketCount;
+
+    }
+    else if(isIncrease==false){
+        ticketCount--;
+        document.getElementById(id).value= ticketCount;
+        
+    }
+
+}
+
 //Bonus Part
 const bonusDiv=document.getElementById('confirmation');
 bonusDiv.addEventListener('click', function(event){
